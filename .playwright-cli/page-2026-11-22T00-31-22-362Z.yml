@@ -1,0 +1,183 @@
+- generic [active] [ref=f11e1]:
+  - link "Hoppa till innehållet" [ref=f11e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f11e3]:
+    - generic [ref=f11e4]:
+      - link "Guestwise" [ref=f11e5] [cursor=pointer]:
+        - /url: "#main"
+      - button "Switch to English" [ref=f11e9] [cursor=pointer]: EN
+  - main [ref=f11e10]:
+    - generic [ref=f11e11]:
+      - generic [ref=f11e12]:
+        - heading "Fler gäster, gladare gäster" [level=1] [ref=f11e13]
+        - paragraph [ref=f11e14]: AI-assistenten som hjälper små företag att få fler kunder och ge dem en bättre upplevelse.
+        - generic [ref=f11e15]:
+          - generic [ref=f11e16]: Ditt företags namn
+          - textbox "Ditt företags namn" [ref=f11e17]:
+            - /placeholder: Vad heter ditt företag?
+          - button "Boka en visning" [ref=f11e18] [cursor=pointer]
+        - paragraph [ref=f11e19]: 20 minuter, kostnadsfritt. Vi visar era egna recensioner.
+      - generic [ref=f11e21]: Scrolla
+    - generic [ref=f11e25]:
+      - generic [ref=f11e26]:
+        - heading "Så fungerar det" [level=2] [ref=f11e27]
+        - paragraph [ref=f11e28]: Tre steg. Du gör bara det sista.
+      - generic [ref=f11e29]:
+        - button "Föregående" [disabled]
+        - button "Nästa" [ref=f11e30] [cursor=pointer]
+        - generic [ref=f11e33]:
+          - article [ref=f11e34]:
+            - generic [ref=f11e36]:
+              - generic [ref=f11e37]:
+                - text: Karin O.
+                - img "2 av 5 stjärnor" [ref=f11e38]: ★★★★★
+              - paragraph [ref=f11e39]: Gott kaffe, men jag fick vänta 20 minuter på mackan en lördag.
+            - generic [ref=f11e40]:
+              - heading "Vi läser varje recension" [level=3] [ref=f11e41]
+              - paragraph [ref=f11e42]: Guestwise hämtar nya recensioner från Google så fort de kommer.
+          - article [ref=f11e43]:
+            - generic [ref=f11e45]:
+              - generic [ref=f11e46]: Förslag till svar
+              - paragraph [ref=f11e48]: ▍
+            - generic [ref=f11e49]:
+              - heading "Svaret skrivs i er ton" [level=3] [ref=f11e50]
+              - paragraph [ref=f11e51]: På samma språk som recensionen, och om det som gästen faktiskt skrev.
+          - article [ref=f11e52]:
+            - generic [ref=f11e55]:
+              - button "Godkänn och publicera" [ref=f11e65] [cursor=pointer]
+              - status: ✓ Publicerat på Google
+            - generic [ref=f11e66]:
+              - heading "Du godkänner med ett klick" [level=3] [ref=f11e67]
+              - paragraph [ref=f11e68]: Inget publiceras utan dig, om du inte själv väljer det.
+    - generic [ref=f11e71]:
+      - generic [ref=f11e72]:
+        - heading "Byggt för kaféer" [level=2] [ref=f11e73]: Byggt förkaféer
+        - paragraph [ref=f11e74]: Mer än svar. Guestwise håller koll på allt som får fler att hitta er.
+        - list [ref=f11e76]:
+          - listitem [ref=f11e77]:
+            - generic [ref=f11e78]: Svar på varje recension
+            - generic [ref=f11e79]: Utkast i er ton på svenska eller engelska, klara att godkänna.
+          - listitem [ref=f11e81]:
+            - generic [ref=f11e82]: Koll på grannarna
+            - generic [ref=f11e83]: Se hur ni ligger till mot kaféerna på samma gata, och hur långt det är kvar.
+          - listitem [ref=f11e85]:
+            - generic [ref=f11e86]: Veckorapport
+            - generic [ref=f11e87]: Vad gästerna gillar, vad de klagar på och vad du kan göra åt det.
+          - listitem [ref=f11e88]:
+            - generic [ref=f11e89]: NFC-kort vid kassan
+            - generic [ref=f11e90]: Gästen blippar med mobilen och hamnar direkt på er recensionssida.
+      - generic [ref=f11e91]:
+        - generic [ref=f11e93]:
+          - heading "Väntar på svar · 3" [level=4] [ref=f11e94]
+          - paragraph [ref=f11e95]: “Bästa kanelbullen i stan!” ★★★★★
+          - paragraph [ref=f11e96]: Tack så mycket! Vi bakar dem varje morgon, välkommen tillbaka. /Elin
+        - generic [ref=f11e98]:
+          - heading "Recensioner på Google (exempel)" [level=4] [ref=f11e99]
+          - generic [ref=f11e100]:
+            - generic [ref=f11e101]:
+              - text: Kafé Tallkotten
+              - generic [ref=f11e102]: "212"
+            - generic [ref=f11e104]:
+              - text: Bryggan Kaffebar
+              - generic [ref=f11e105]: "96"
+            - generic [ref=f11e107]:
+              - text: Kanelhörnan
+              - generic [ref=f11e108]: "57"
+            - generic [ref=f11e110]:
+              - generic [ref=f11e111]: Ert kafé
+              - generic [ref=f11e112]: "38"
+          - paragraph [ref=f11e114]: 19 recensioner kvar till nästa granne.
+        - generic [ref=f11e116]:
+          - heading "Veckorapport, vecka 45" [level=4] [ref=f11e117]
+          - generic [ref=f11e118]:
+            - generic [ref=f11e119]:
+              - generic [ref=f11e120]: Gillar
+              - generic [ref=f11e121]: Bullarna, personalen
+            - generic [ref=f11e122]:
+              - generic [ref=f11e123]: Klagar på
+              - generic [ref=f11e124]: Väntetid på lördagar
+            - generic [ref=f11e125]:
+              - generic [ref=f11e126]: Gör så här
+              - generic [ref=f11e127]: En extra person 11–14
+        - generic [ref=f11e129]:
+          - generic [ref=f11e130]:
+            - generic [ref=f11e131]:
+              - img "5 av 5 stjärnor" [ref=f11e132]: ★★★★★
+              - generic [ref=f11e133]: Vi uppskattar din recension på Google!
+            - generic [ref=f11e134]: Blippa för att betygsätta
+          - generic [ref=f11e141]:
+            - generic [ref=f11e142]: "0"
+            - text: blipp den här månaden (exempel)
+    - generic [ref=f11e145]:
+      - generic [ref=f11e146]:
+        - heading "Enkla priser" [level=2] [ref=f11e147]
+        - paragraph [ref=f11e148]: Ingen bindningstid. Priserna gäller från lanseringen våren 2027, exklusive moms.
+      - generic [ref=f11e149]:
+        - button "Föregående" [ref=f11e150] [cursor=pointer]
+        - button "Nästa" [ref=f11e153] [cursor=pointer]
+        - generic [ref=f11e156]:
+          - generic [ref=f11e157]:
+            - heading "Bas" [level=3] [ref=f11e158]
+            - generic [ref=f11e159]: 299 kr / mån
+            - list [ref=f11e160]:
+              - listitem [ref=f11e161]: ✓Bevakning av recensioner
+              - listitem [ref=f11e162]: ✓Veckorapport
+            - link "Boka visning" [ref=f11e163] [cursor=pointer]:
+              - /url: "#book"
+          - generic [ref=f11e164]:
+            - generic [ref=f11e165]: Rekommenderas
+            - heading "Tillväxt" [level=3] [ref=f11e166]
+            - generic [ref=f11e167]: 599 kr / mån
+            - list [ref=f11e168]:
+              - listitem [ref=f11e169]: ✓Allt i Bas
+              - listitem [ref=f11e170]: ✓Svarsutkast att godkänna
+              - listitem [ref=f11e171]: ✓Jämförelse med grannarna
+              - listitem [ref=f11e172]: ✓Rådgivare i chatt
+            - link "Boka visning" [ref=f11e173] [cursor=pointer]:
+              - /url: "#book"
+          - generic [ref=f11e174]:
+            - heading "Pro" [level=3] [ref=f11e175]
+            - generic [ref=f11e176]: 1 199 kr / mån
+            - list [ref=f11e177]:
+              - listitem [ref=f11e178]: ✓Allt i Tillväxt
+              - listitem [ref=f11e179]: ✓E-post och nyhetsbrev
+              - listitem [ref=f11e180]: ✓Inlägg till sociala medier
+              - listitem [ref=f11e181]: ✓Förbättringar av hemsidan
+            - link "Boka visning" [ref=f11e182] [cursor=pointer]:
+              - /url: "#book"
+    - generic [ref=f11e184]:
+      - generic [ref=f11e185]:
+        - heading "Frågor" [level=2] [ref=f11e186]
+        - paragraph [ref=f11e187]:
+          - text: Hittar du inte svaret? Mejla oss på
+          - link "hej@guestwise.eu" [ref=f11e188] [cursor=pointer]:
+            - /url: mailto:hej@guestwise.eu
+        - generic [aria-hidden] [ref=f11e189]:
+          - paragraph [ref=f11e190]: Hur gick veckan?
+          - paragraph [ref=f11e191]: ✦ 6 nya recensioner, snitt 4,8. Två väntar på ditt ok.
+          - paragraph [ref=f11e192]: Visa dem!
+      - generic [ref=f11e193]:
+        - group [ref=f11e194]:
+          - generic "Publiceras något utan att jag godkänner det? +" [ref=f11e195] [cursor=pointer]
+        - group [ref=f11e196]:
+          - generic "Vilka företag passar Guestwise för? +" [ref=f11e197] [cursor=pointer]
+        - group [ref=f11e198]:
+          - generic "Vad är NFC-kortet? +" [ref=f11e199] [cursor=pointer]
+        - group [ref=f11e200]:
+          - generic "När kan vi börja? +" [ref=f11e201] [cursor=pointer]
+        - group [ref=f11e202]:
+          - generic "Kostar visningen något? +" [ref=f11e203] [cursor=pointer]
+    - generic [ref=f11e205]:
+      - heading "Låt gästerna prata för er" [level=2] [ref=f11e206]
+      - generic [ref=f11e207]:
+        - generic [ref=f11e208]: Ditt företags namn
+        - textbox "Ditt företags namn" [ref=f11e209]:
+          - /placeholder: Vad heter ditt företag?
+        - button "Boka en visning" [ref=f11e210] [cursor=pointer]
+  - contentinfo [ref=f11e211]:
+    - generic [ref=f11e212]:
+      - generic [aria-hidden] [ref=f11e213]: Guestwise
+      - generic [ref=f11e214]:
+        - generic [ref=f11e215]: © 2026 Guestwise
+        - link "hej@guestwise.eu" [ref=f11e217] [cursor=pointer]:
+          - /url: mailto:hej@guestwise.eu
