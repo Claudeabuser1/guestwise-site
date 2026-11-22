@@ -45,14 +45,14 @@
   .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; align-items: center; overflow: hidden; padding: 112px 0 28px; }
   .hero > .hero-in { margin-block: auto; }
   .glow { position: absolute; inset: 0; pointer-events: none; }
-  .glow i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .75; will-change: transform; }
+  .glow i { position: absolute; border-radius: 50%; background: radial-gradient(closest-side, var(--c), transparent); opacity: .75; will-change: transform; }
   /* fade the colour out at the edges so no hard line shows between sections */
   .hero .glow { -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 97%); mask-image: linear-gradient(to bottom, #000 50%, transparent 97%); }
   .final .glow { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent); }
-  .glow i:nth-child(1) { width: 62vw; height: 46vw; left: 2%; top: 32%; background: var(--peach); animation: drift 18s ease-in-out infinite alternate; }
-  .glow i:nth-child(2) { width: 52vw; height: 44vw; right: -4%; top: 38%; background: var(--rose); animation: drift 22s ease-in-out infinite alternate-reverse; }
-  .glow i:nth-child(3) { width: 44vw; height: 34vw; left: 28%; top: 54%; background: var(--accent); opacity: .5; animation: drift 26s ease-in-out infinite alternate; }
-  .glow i:nth-child(4) { width: 40vw; height: 30vw; left: 18%; top: 8%; background: var(--lilac); opacity: .45; animation: drift 30s ease-in-out infinite alternate-reverse; }
+  .glow i:nth-child(1) { width: 62vw; height: 46vw; left: 2%; top: 32%; --c: var(--peach); animation: drift 18s ease-in-out infinite alternate; }
+  .glow i:nth-child(2) { width: 52vw; height: 44vw; right: -4%; top: 38%; --c: var(--rose); animation: drift 22s ease-in-out infinite alternate-reverse; }
+  .glow i:nth-child(3) { width: 44vw; height: 34vw; left: 28%; top: 54%; --c: var(--accent); opacity: .5; animation: drift 26s ease-in-out infinite alternate; }
+  .glow i:nth-child(4) { width: 40vw; height: 30vw; left: 18%; top: 8%; --c: var(--lilac); opacity: .45; animation: drift 30s ease-in-out infinite alternate-reverse; }
   .starglow svg { position: absolute; left: 50%; top: 50%; width: min(104vw, 1250px); aspect-ratio: 1; filter: blur(42px); opacity: .85; transform: translate(-50%, -50%); animation: breathe 16s ease-in-out infinite alternate; will-change: transform; }
   @keyframes breathe { from { transform: translate(-50%, -50%) rotate(-5deg) scale(.95); } to { transform: translate(-50%, -50%) rotate(5deg) scale(1.04); } }
   @keyframes drift { from { transform: translate(-4%, -3%) scale(1); } to { transform: translate(5%, 4%) scale(1.12); } }
@@ -79,7 +79,7 @@
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .card { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
   .stage { position: relative; height: 260px; display: grid; place-items: center; padding: 24px; overflow: hidden; }
-  .stage::before { content: ""; position: absolute; width: 70%; height: 70%; border-radius: 50%; filter: blur(50px); opacity: .55; background: var(--c, var(--peach)); }
+  .stage::before { content: ""; position: absolute; width: 110%; height: 110%; border-radius: 50%; opacity: .55; background: radial-gradient(closest-side, var(--c, var(--peach)), transparent); }
   .card:nth-child(2) .stage::before { --c: var(--rose); } .card:nth-child(3) .stage::before { --c: var(--sky); }
   .card .txt { padding: 0 24px 26px; } .card h3 { font-size: 20px; letter-spacing: -0.02em; margin-bottom: 6px; } .card p { color: var(--muted); font-size: 16px; }
   .mini { position: relative; width: 100%; max-width: 300px; background: #fff; border-radius: 14px; padding: 14px 16px; box-shadow: 0 12px 40px -16px rgba(0, 0, 0, .22); font-size: 14px; line-height: 1.45; }
@@ -128,7 +128,7 @@
   .story-r { display: grid; gap: 22vh; padding: 6vh 0 12vh; }
   .panel { position: relative; min-height: 420px; border-radius: 22px; background: var(--dark-2); border: 1px solid #2f2e2c; display: grid; place-items: center; padding: 36px; overflow: hidden; opacity: .35; transform: scale(.96); transition: opacity .6s var(--ease), transform .6s var(--ease); }
   .panel.on { opacity: 1; transform: none; }
-  .panel::before { content: ""; position: absolute; inset: auto -10% -40% -10%; height: 70%; border-radius: 50%; filter: blur(70px); background: var(--c); opacity: .45; }
+  .panel::before { content: ""; position: absolute; inset: auto -30% -60% -30%; height: 110%; border-radius: 50%; background: radial-gradient(closest-side, var(--c), transparent); opacity: .45; }
   .panel[data-s="0"] { --c: var(--accent); } .panel[data-s="1"] { --c: var(--lilac); } .panel[data-s="2"] { --c: var(--sky); } .panel[data-s="3"] { --c: var(--rose); }
   .dui { position: relative; width: min(420px, 100%); background: #fbfaf7; color: var(--ink); border-radius: 16px; padding: 20px; font-size: 14px; }
   .dui h4 { font-size: 15px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.01em; }
@@ -175,9 +175,9 @@
   /* faq */
   #faq { position: relative; padding-top: 96px; }
   .fglow { position: absolute; inset: -160px 0; overflow: hidden; pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent); }
-  .fglow i { position: absolute; border-radius: 50%; filter: blur(90px); }
-  .fglow i:nth-child(1) { width: 46vw; height: 32vw; left: -12vw; top: 35%; background: var(--lilac); opacity: .3; }
-  .fglow i:nth-child(2) { width: 30vw; height: 24vw; right: -8vw; top: 20%; background: var(--sky); opacity: .25; }
+  .fglow i { position: absolute; border-radius: 50%; background: radial-gradient(closest-side, var(--c), transparent); }
+  .fglow i:nth-child(1) { width: 46vw; height: 32vw; left: -12vw; top: 35%; --c: var(--lilac); opacity: .3; }
+  .fglow i:nth-child(2) { width: 30vw; height: 24vw; right: -8vw; top: 20%; --c: var(--sky); opacity: .25; }
   .faq { position: relative; display: grid; grid-template-columns: 4fr 8fr; gap: 64px; }
   .faq .sub { margin-top: 16px; font-size: 17px; }
   .chat { display: grid; gap: 10px; margin-top: 40px; max-width: 330px; }
@@ -216,15 +216,31 @@
     .pin-how #how .card.past { opacity: 0; transform: translateY(-40px) scale(.96); pointer-events: none; }
     .pin-how #how .stage { height: 230px; }
   }
+  /* phones: pinned "Byggt för" */
+  .pin-story #story { height: 420vh; }
+  .pin-story #story .dark { position: sticky; top: 0; height: 100vh; height: 100svh; padding: 84px 0 20px; border-radius: 0 0 22px 22px; overflow: hidden; display: flex; align-items: center; }
+  .pin-story .story { gap: 20px; }
+  .pin-story .story > * { min-width: 0; }
+  .pin-story .story-l h2 { margin-bottom: 10px; } .pin-story .story-l .sub { font-size: 16px; }
+  .pin-story .stepwin { --sh: 104px; height: var(--sh); overflow: hidden; margin-top: 18px; border-top: 1px solid #2f2e2c; }
+  .pin-story .steps { margin: 0; transform: translateY(calc(var(--k, 0) * -1 * var(--sh))); will-change: transform; }
+  .pin-story .steps li { height: var(--sh); border: 0; padding: 14px 0 0; opacity: .25; transition: opacity .3s; }
+  .pin-story .steps li.on { opacity: 1; } .pin-story .steps li span { max-height: none; }
+  .pin-story .story-r { display: flex; gap: 12px; padding: 0; }
+  .pin-story .panel { flex: 0 0 100%; min-height: 0; height: min(300px, 38svh); transform: translateX(calc(var(--k, 0) * -1 * (100% + 12px))); will-change: transform; transition: none; }
+  .pin-story .panel .dui { transform: scale(.92); } .pin-story .nfc { width: 168px; } .pin-story .ntop { padding: 12px 12px 0; gap: 4px; } .pin-story .ntop b, .pin-story .nst { font-size: 11px; } .pin-story .nbot { gap: 6px; } .pin-story .nbot small { font-size: 11px; } .pin-story .wave { width: 30px; height: 30px; } .pin-story .wave svg { inset: 5px; } .pin-story .count { margin-top: 4px; } .pin-story .count b { font-size: 34px; }
+  @media (max-height: 740px) { .pin-story .story-l .sub { display: none; } .pin-story .panel { height: min(300px, 45svh); } }
   @media (max-width: 560px) {
     .wrap { width: calc(100% - 32px); }
     .navr .btn { display: none; }
     .ask { flex-direction: column; align-items: stretch; padding: 10px; } .ask input { padding: 0 12px; } .ask .btn { width: 100%; }
     .hero .sub { font-size: 17px; }
     .starglow svg { width: 190vw; top: 58%; }
-    .glow i { width: 130vw !important; height: 100vw !important; filter: blur(60px); }
+    .glow i, .starglow svg { animation: none !important; will-change: auto; }
+    .glow i { width: 130vw !important; height: 100vw !important; }
     .glow i:nth-child(1) { left: -50%; } .glow i:nth-child(2) { right: -60%; } .glow i:nth-child(3) { left: -10%; } .glow i:nth-child(4) { left: -20%; top: 0; }
   }
+  @media (hover: none) { .glow i, .starglow svg { animation: none !important; will-change: auto; } }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     .js .rv { opacity: 1; transform: none; } .panel { opacity: 1; transform: none; }
@@ -284,12 +300,12 @@
         <div class="story-l">
           <h2><span data-t="sth">Byggt för</span><br><span class="word" id="word">kaféer</span></h2>
           <p class="sub" data-t="sts">Mer än svar. Guestwise håller koll på allt som får fler att hitta er.</p>
-          <ol class="steps" id="steps">
+          <div class="stepwin"><ol class="steps" id="steps">
             <li class="on" data-s="0"><b data-t="s0h">Svar på varje recension</b><span data-t="s0p">Utkast i er ton på svenska eller engelska, klara att godkänna.</span><i class="bar"></i></li>
             <li data-s="1"><b data-t="s1h">Koll på grannarna</b><span data-t="s1p">Se hur ni ligger till mot kaféerna på samma gata, och hur långt det är kvar.</span><i class="bar"></i></li>
             <li data-s="2"><b data-t="s2h">Veckorapport</b><span data-t="s2p">Vad gästerna gillar, vad de klagar på och vad du kan göra åt det.</span><i class="bar"></i></li>
             <li data-s="3"><b data-t="s3h">NFC-kort vid kassan</b><span data-t="s3p">Gästen blippar med mobilen och hamnar direkt på er recensionssida.</span><i class="bar"></i></li>
-          </ol>
+          </ol></div>
         </div>
         <div class="story-r">
           <div class="panel on" data-s="0"><div class="dui"><h4 data-t="p0h">Väntar på svar · 3</h4><p data-t="p0a">“Bästa kanelbullen i stan!” ★★★★★</p><p style="margin-top:10px;color:#5c5a55" data-t="p0b">Tack så mycket! Vi bakar dem varje morgon, välkommen tillbaka. /Elin</p></div></div>
@@ -360,6 +376,8 @@
   const EMAIL = 'hej@guestwise.eu'; // placeholder until the real address exists
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   // pinning: 'Så fungerar det' pins on every screen tall enough; 'Priser' only on wide screens (three cards side by side)
+  const onScrollFns = []; let ticking = false;
+  addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; onScrollFns.forEach((f) => f()); }); }, { passive: true });
   const howQ = matchMedia('(min-height: 600px) and (prefers-reduced-motion: no-preference)');
   const prQ = matchMedia('(min-width: 901px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)');
   const T = {
@@ -425,7 +443,7 @@
   // nav background after scrolling
   const header = document.getElementById('top');
   const onScroll = () => header.classList.toggle('scrolled', scrollY > 20);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  onScrollFns.push(onScroll); onScroll();
 
   // reveal on scroll
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.15 });
@@ -483,7 +501,18 @@
     if (s === '3') countUp(document.getElementById('taps'), 42);
   }
   function storyPick() { const mid = innerHeight / 2; let s = '0'; panels.forEach((p) => { if (p.getBoundingClientRect().top <= mid) s = p.dataset.s; }); activate(s); }
-  addEventListener('scroll', storyPick, { passive: true }); storyPick();
+  // phones: the whole section pins; scrolling down slides the panels sideways and the points up, one at a time
+  const storyQ = matchMedia('(max-width: 900px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)');
+  const storyEl = document.getElementById('story');
+  const plateau = (x) => { const i = Math.floor(x), f = x - i, t = Math.min(1, Math.max(0, (f - 0.3) / 0.4)); return i + t * t * (3 - 2 * t); };
+  function storyScroll() {
+    const on = storyQ.matches; document.documentElement.classList.toggle('pin-story', on);
+    if (!on) { storyEl.style.removeProperty('--k'); storyPick(); return; }
+    const r = storyEl.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    const k = Math.min(panels.length - 1, plateau(prog(storyEl) * (panels.length - 1)));
+    storyEl.style.setProperty('--k', k.toFixed(3)); activate(String(Math.round(k)));
+  }
+  onScrollFns.push(storyScroll); addEventListener('resize', storyScroll); storyQ.addEventListener('change', storyScroll);
   let countRaf;
   function countUp(el, to) {
     if (reduce) { el.textContent = to; return; }
@@ -509,8 +538,8 @@
       pricing.style.setProperty('--f', f.toFixed(3)); pricing.classList.toggle('done', f >= 1);
     }
   }
-  addEventListener('scroll', pins, { passive: true }); addEventListener('resize', pins);
-  howQ.addEventListener('change', pins); prQ.addEventListener('change', pins); pins();
+  onScrollFns.push(pins); addEventListener('resize', pins);
+  howQ.addEventListener('change', pins); prQ.addEventListener('change', pins); pins(); storyScroll();
 
   // menu links to pinned sections: jump to the start of the section, then play the scroll to its end
   // (where everything is shown). "Funktioner" and "Frågor" just go to their top.
