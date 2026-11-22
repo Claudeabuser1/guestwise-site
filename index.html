@@ -200,6 +200,7 @@
   .fbig { font-size: clamp(64px, 15vw, 220px); font-weight: 600; letter-spacing: -0.06em; line-height: .85; color: #e8e4dc; user-select: none; }
   .frow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: 32px; color: var(--muted); font-size: 15px; } .frow a { text-decoration: none; } .frow a:hover { color: var(--ink); }
 
+  .arw { display: none; }
   @media (max-width: 900px) {
     .links { display: none; }
     section { padding: 96px 0; }
@@ -209,13 +210,18 @@
     .story-r { gap: 20px; padding: 0; }
     .panel { min-height: 340px; opacity: 1; transform: none; padding: 24px; }
     .dark { padding: 80px 0; border-radius: 22px; }
-    .pin-how #how .head { margin-bottom: 24px; gap: 8px; }
-    .pin-how #how .cards { grid-template-columns: 1fr; }
-    .pin-how #how .card { grid-area: 1 / 1; }
-    .pin-how #how .card:not(.on) { opacity: 0; transform: translateY(60px) scale(.96); }
-    .pin-how #how .card.past { opacity: 0; transform: translateY(-40px) scale(.96); pointer-events: none; }
-    .pin-how #how .stage { height: 230px; }
+    /* phones: swipe sideways between cards / prices */
+    .swipewrap { position: relative; }
+    .swipe { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; margin-inline: -16px; padding: 16px 8% 8px; scrollbar-width: none; }
+    .swipe::-webkit-scrollbar { display: none; }
+    .swipe > * { flex: 0 0 84%; scroll-snap-align: center; scroll-snap-stop: always; }
+    .arw { display: grid; place-items: center; position: absolute; top: 50%; z-index: 3; width: 36px; height: 36px; margin-top: -18px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255, 255, 255, .92); box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .3); cursor: pointer; transition: opacity .2s; }
+    .arw svg { width: 18px; height: 18px; fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .arw.prev { left: -10px; } .arw.next { right: -10px; } .arw:disabled { opacity: 0; pointer-events: none; }
+    #how .head, #pricing .head { margin-bottom: 20px; }
+    .swipe .stage { padding: 18px; } .swipe .mini { min-width: 0; } .swipe .approve .btn { font-size: 14px; padding: 0 14px; }
   }
+
   /* phones: pinned "Byggt för" */
   .pin-story #story { height: 420vh; }
   .pin-story #story .dark { position: sticky; top: 0; height: 100vh; height: 100svh; padding: 84px 0 20px; border-radius: 0 0 22px 22px; overflow: hidden; display: flex; align-items: center; }
@@ -240,7 +246,7 @@
     .glow i { width: 130vw !important; height: 100vw !important; }
     .glow i:nth-child(1) { left: -50%; } .glow i:nth-child(2) { right: -60%; } .glow i:nth-child(3) { left: -10%; } .glow i:nth-child(4) { left: -20%; top: 0; }
   }
-  @media (hover: none) { .glow i, .starglow svg { animation: none !important; will-change: auto; } }
+  @media (hover: none) { .glow i, .starglow svg { animation: none !important; will-change: auto; } .word { background: none; color: var(--rose); } }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     .js .rv { opacity: 1; transform: none; } .panel { opacity: 1; transform: none; }
@@ -277,7 +283,7 @@
     <div class="wrap">
       <div class="head"><h2 class="rv" data-t="howh">Så fungerar det</h2><p class="sub rv" style="--i:1" data-t="hows">Tre steg. Du gör bara det sista.</p></div>
       <div class="track" aria-hidden="true"><i></i></div>
-      <div class="cards">
+      <div class="swipewrap"><button class="arw prev" type="button" data-t-aria="prev" aria-label="Föregående"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="arw next" type="button" data-t-aria="next" aria-label="Nästa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><div class="cards swipe">
         <article class="card rv">
           <div class="stage"><div class="mini"><div class="who">Karin O. <span class="stars" role="img" aria-label="2 av 5 stjärnor">★★<b>★★★</b></span></div><p data-t="rev">Gott kaffe, men jag fick vänta 20 minuter på mackan en lördag.</p><svg class="lens" viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="13" fill="rgba(255,255,255,.35)" stroke="#141414" stroke-width="3.5"/><path d="M14 14a8 8 0 0 1 8-3" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="M30 30l11 11" stroke="#141414" stroke-width="5" stroke-linecap="round"/></svg></div></div>
           <div class="txt"><h3 data-t="c1h">Vi läser varje recension</h3><p data-t="c1p">Guestwise hämtar nya recensioner från Google så fort de kommer.</p></div>
@@ -290,7 +296,7 @@
           <div class="stage"><div class="mini"><div class="approve" id="approve"><span class="bwrap"><span class="spark" aria-hidden="true"><i style="--x:-125px;--y:-34px"></i><i style="--x:-140px;--y:6px"></i><i style="--x:-110px;--y:38px"></i><i style="--x:-80px;--y:-46px"></i><i style="--x:125px;--y:-34px"></i><i style="--x:140px;--y:6px"></i><i style="--x:110px;--y:38px"></i><i style="--x:80px;--y:-46px"></i></span><button class="btn hot" type="button" data-t="ok">Godkänn och publicera</button></span><span class="tick" role="status" data-t="okd">✓ Publicerat på Google</span><svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5l15 9.2-6.6 1.4 3.9 7.3-2.9 1.5-3.9-7.4L4.6 19z" fill="#141414" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></div></div></div>
           <div class="txt"><h3 data-t="c3h">Du godkänner med ett klick</h3><p data-t="c3p">Inget publiceras utan dig, om du inte själv väljer det.</p></div>
         </article>
-      </div>
+      </div></div>
     </div>
   </div></section>
 
@@ -320,11 +326,11 @@
   <section id="pricing" class="pin"><div class="sticky">
     <div class="wrap">
       <div class="head"><h2 class="rv" data-t="prh">Enkla priser</h2><p class="sub rv" style="--i:1" data-t="prs">Ingen bindningstid. Priserna gäller från lanseringen våren 2027, exklusive moms.</p></div>
-      <div class="plans">
+      <div class="swipewrap"><button class="arw prev" type="button" data-t-aria="prev" aria-label="Föregående"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="arw next" type="button" data-t-aria="next" aria-label="Nästa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><div class="plans swipe">
         <div class="plan rv"><h3 data-t="b">Bas</h3><div class="price"><span data-price="299">299 kr</span> <small data-t="mo">/ mån</small></div><ul><li data-t="f1">Bevakning av recensioner</li><li data-t="f2">Veckorapport</li></ul><a class="btn" href="#book" data-t="cta">Boka visning</a></div>
         <div class="plan star rv" style="--i:1"><span class="tag" data-t="pop">Rekommenderas</span><h3 data-t="g">Tillväxt</h3><div class="price"><span data-price="599">599 kr</span> <small data-t="mo">/ mån</small></div><ul><li data-t="f3">Allt i Bas</li><li data-t="f4">Svarsutkast att godkänna</li><li data-t="f5">Jämförelse med grannarna</li><li data-t="f6">Rådgivare i chatt</li></ul><a class="btn hot" href="#book" data-t="cta">Boka visning</a></div>
         <div class="plan rv" style="--i:2"><h3>Pro</h3><div class="price"><span data-price="1199">1 199 kr</span> <small data-t="mo">/ mån</small></div><ul><li data-t="f7">Allt i Tillväxt</li><li data-t="f8">E-post och nyhetsbrev</li><li data-t="f9">Inlägg till sociala medier</li><li data-t="f10">Förbättringar av hemsidan</li></ul><a class="btn" href="#book" data-t="cta">Boka visning</a></div>
-      </div>
+      </div></div>
     </div>
   </div></section>
 
@@ -378,7 +384,7 @@
   // pinning: 'Så fungerar det' pins on every screen tall enough; 'Priser' only on wide screens (three cards side by side)
   const onScrollFns = []; let ticking = false;
   addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; onScrollFns.forEach((f) => f()); }); }, { passive: true });
-  const howQ = matchMedia('(min-height: 600px) and (prefers-reduced-motion: no-preference)');
+  const howQ = matchMedia('(min-width: 901px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)');
   const prQ = matchMedia('(min-width: 901px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)');
   const T = {
     en: {
@@ -407,10 +413,10 @@
       q4: 'When can we start?', a4: 'We launch in spring 2027. Book a demo now to be among the first.',
       q5: 'Does the demo cost anything?', a5: 'No. It takes 20 minutes and we go through your own reviews.',
       fh: 'Let your guests speak for you', words: ['cafés', 'restaurants', 'salons', 'bakeries'], subj: 'Book a demo', body: 'Hi!\n\nI would like to book a Guestwise demo', bodyEnd: '.\n\nDoes a day next week work?\n', for: ' for ',
-      nav: 'Main menu', langBtn: 'SV', langAria: 'Byt till svenska', title: 'Guestwise – more guests, happier guests'
+      nav: 'Main menu', prev: 'Previous', next: 'Next', langBtn: 'SV', langAria: 'Byt till svenska', title: 'Guestwise – more guests, happier guests'
     }
   };
-  const SV = { words: ['kaféer', 'restauranger', 'salonger', 'bagerier'], subj: 'Boka en visning', body: 'Hej!\n\nJag vill boka en visning av Guestwise', bodyEnd: '.\n\nPasser det någon dag nästa vecka?\n', for: ' för ', langBtn: 'EN', langAria: 'Switch to English', title: document.title, nav: 'Huvudmeny' };
+  const SV = { words: ['kaféer', 'restauranger', 'salonger', 'bagerier'], subj: 'Boka en visning', body: 'Hej!\n\nJag vill boka en visning av Guestwise', bodyEnd: '.\n\nPasser det någon dag nästa vecka?\n', for: ' för ', langBtn: 'EN', langAria: 'Switch to English', title: document.title, nav: 'Huvudmeny', prev: 'Föregående', next: 'Nästa' };
   // keep the Swedish originals from the markup so switching back needs no second dictionary
   const orig = {}; document.querySelectorAll('[data-t]').forEach((el) => { orig[el.dataset.t] = el.textContent; });
   const origPh = document.querySelector('[data-t-ph]').placeholder;
@@ -425,7 +431,7 @@
     document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = lang === 'en' && T.en[el.dataset.t] ? T.en[el.dataset.t] : orig[el.dataset.t]; });
     document.querySelectorAll('[data-t-ph]').forEach((el) => { el.placeholder = lang === 'en' ? T.en.biz : origPh; });
     document.querySelectorAll('[data-price]').forEach((el) => { el.textContent = fmt(+el.dataset.price); });
-    document.querySelector('[data-t-aria]').setAttribute('aria-label', L().nav);
+    document.querySelectorAll('[data-t-aria]').forEach((el) => el.setAttribute('aria-label', L()[el.dataset.tAria]));
     const b = document.getElementById('lang'); b.textContent = L().langBtn; b.setAttribute('aria-label', L().langAria);
     document.title = L().title; wordIdx = 0;
     typeReply();
@@ -540,6 +546,19 @@
   }
   onScrollFns.push(pins); addEventListener('resize', pins);
   howQ.addEventListener('change', pins); prQ.addEventListener('change', pins); pins(); storyScroll();
+
+  // phones: arrows step through the swipe rows; prices open on Tillväxt
+  document.querySelectorAll('.swipewrap').forEach((w) => {
+    const row = w.querySelector('.swipe'), prev = w.querySelector('.prev'), next = w.querySelector('.next');
+    const step = () => row.children[0].offsetWidth + 12;
+    const upd = () => { prev.disabled = row.scrollLeft < 8; next.disabled = row.scrollLeft > row.scrollWidth - row.clientWidth - 8; };
+    prev.addEventListener('click', () => row.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
+    row.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd);
+    const star = row.querySelector('.star');
+    if (star) requestAnimationFrame(() => { row.scrollLeft = star.offsetLeft - (row.clientWidth - star.offsetWidth) / 2; upd(); });
+    upd();
+  });
 
   // menu links to pinned sections: jump to the start of the section, then play the scroll to its end
   // (where everything is shown). "Funktioner" and "Frågor" just go to their top.
