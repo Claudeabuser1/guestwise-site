@@ -150,7 +150,8 @@
   @keyframes ping { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
   .count { position: relative; margin-top: 28px; text-align: center; color: var(--dark-ink); } .count b { display: block; font-size: 44px; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 
-  /* pricing */
+  /* pricing (above the FAQ glow, which reaches 160px up into this section) */
+  #pricing { position: relative; z-index: 1; }
   .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
   .plan { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
   .plan.star { position: relative; border-color: transparent; box-shadow: 0 0 0 2px var(--accent); }
