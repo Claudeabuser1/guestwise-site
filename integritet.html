@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integritetspolicy – Guestwise</title>
+<meta name="description" content="Hur Guestwise hanterar de uppgifter du lämnar när du bokar en visning.">
+<meta name="theme-color" content="#fbfaf7">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="pages.css">
+<style>
+  main { padding: 132px 0 64px; }
+  .doc { max-width: 720px; }
+  .doc h1 { font-size: clamp(36px, 5vw, 56px); }
+  .doc .upd { color: var(--muted); font-size: 15px; margin-top: 12px; }
+  .doc h2 { font-size: 22px; margin: 40px 0 10px; letter-spacing: -0.02em; }
+  .doc p, .doc li { color: #3d3b37; }
+  .doc ul { padding-left: 20px; display: grid; gap: 6px; margin-top: 8px; }
+  .doc a { color: var(--ink); }
+  footer { padding: 40px 0; color: var(--muted); font-size: 15px; }
+  footer a { text-decoration: none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Guestwise" translate="no"><img class="gmark" src="logo/gw-g.svg" alt="" width="17" height="23">uestwise</a>
+    <button class="lang" id="lang" type="button" aria-label="Switch to English">EN</button>
+  </div>
+</header>
+<main>
+  <!-- TODO before publishing: fill in the company name and org number (two places marked [ ]) once the company is set up. -->
+  <article class="wrap doc">
+    <h1 data-t="h1">Integritetspolicy</h1>
+    <p class="upd" data-t="upd">Senast uppdaterad 24 november 2026</p>
+
+    <h2 data-t="h_who">Vem som ansvarar</h2>
+    <p data-t="p_who">Guestwise drivs av [företagsnamn], org.nr [nummer], som är personuppgiftsansvarig. Frågor om dina uppgifter skickar du till hej@guestwise.eu.</p>
+
+    <h2 data-t="h_what">Vilka uppgifter vi samlar in</h2>
+    <p data-t="p_what">När du bokar en visning lämnar du företagets namn, din e-postadress och, om du vill, ett telefonnummer. Vi ser också vilket språk sidan visades på. Mer än så samlar vi inte in via webbplatsen.</p>
+
+    <h2 data-t="h_why">Varför, och med vilken rätt</h2>
+    <p data-t="p_why">Vi använder uppgifterna för att kontakta dig och boka in visningen du bad om. Den rättsliga grunden är att du själv har bett om det (åtgärder innan ett eventuellt avtal), och vårt berättigade intresse av att svara på förfrågningar. Vi skickar inga nyhetsbrev utan att du har sagt ja till det.</p>
+
+    <h2 data-t="h_share">Vilka som hjälper oss</h2>
+    <p data-t="p_share">Vi säljer aldrig dina uppgifter. Några tjänster hjälper oss att driva webbplatsen och hanterar uppgifter för vår räkning:</p>
+    <ul>
+      <li data-t="s1">Web3Forms, som tar emot bokningsformuläret och skickar det vidare till vår e-post.</li>
+      <li data-t="s2">Zoho Mail, där vår e-post finns.</li>
+      <li data-t="s3">GitHub Pages, där webbplatsen ligger. Som alla webbservrar kan den tillfälligt registrera din IP-adress av tekniska och säkerhetsskäl.</li>
+    </ul>
+
+    <h2 data-t="h_keep">Hur länge vi sparar dem</h2>
+    <p data-t="p_keep">Tills visningen är genomförd, och högst 12 månader efter det om vi inte börjar samarbeta. Blir ni kund sparar vi uppgifterna så länge avtalet gäller.</p>
+
+    <h2 data-t="h_cookies">Kakor</h2>
+    <p data-t="p_cookies">Vi använder inga kakor för spårning eller annonser. Om du byter språk sparas valet i din egen webbläsare, så att sidan minns det nästa gång.</p>
+
+    <h2 data-t="h_rights">Dina rättigheter</h2>
+    <p data-t="p_rights">Du kan när som helst be att få se vilka uppgifter vi har om dig, rätta dem, få dem raderade eller invända mot hur vi använder dem. Mejla hej@guestwise.eu så svarar vi inom en månad. Tycker du att vi hanterar dina uppgifter fel kan du klaga hos Integritetsskyddsmyndigheten (imy.se).</p>
+  </article>
+</main>
+<footer class="wrap"><a href="index.html" data-t="home">← Till startsidan</a></footer>
+<script src="pages.js"></script>
+<script>
+  GW.page({ en: {
+    title: 'Privacy policy – Guestwise', h1: 'Privacy policy', upd: 'Last updated 24 November 2026',
+    h_who: 'Who is responsible', p_who: 'Guestwise is run by [company name], org. no. [number], which is the data controller. Send questions about your data to hej@guestwise.eu.',
+    h_what: 'What we collect', p_what: 'When you book a demo you give us the business name, your email address and, if you like, a phone number. We also see which language the page was shown in. That is all we collect through the website.',
+    h_why: 'Why, and on what basis', p_why: 'We use the details to contact you and book the demo you asked for. The legal basis is that you asked for it yourself (steps before a possible contract), and our legitimate interest in answering requests. We never send newsletters unless you have said yes.',
+    h_share: 'Who helps us', p_share: 'We never sell your data. A few services help us run the website and handle data on our behalf:',
+    s1: 'Web3Forms, which receives the booking form and forwards it to our email.', s2: 'Zoho Mail, where our email is hosted.', s3: 'GitHub Pages, which hosts the website. Like any web server it may briefly log your IP address for technical and security reasons.',
+    h_keep: 'How long we keep it', p_keep: 'Until the demo has taken place, and at most 12 months after that unless we start working together. If you become a customer, we keep the details for as long as the contract runs.',
+    h_cookies: 'Cookies', p_cookies: 'We use no cookies for tracking or ads. If you switch language, the choice is saved in your own browser so the page remembers it next time.',
+    h_rights: 'Your rights', p_rights: 'You can ask at any time to see what data we hold about you, correct it, have it deleted or object to how we use it. Email hej@guestwise.eu and we reply within a month. If you think we handle your data wrongly, you can complain to the Swedish Authority for Privacy Protection (imy.se).',
+    home: '← Back to the home page'
+  } });
+</script>
+</body>
+</html>

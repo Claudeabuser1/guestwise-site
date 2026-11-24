@@ -6,7 +6,7 @@
 <title>Guestwise – fler gäster, gladare gäster</title>
 <meta name="description" content="Guestwise är AI-assistenten som hjälper små företag att få fler kunder och ge dem en bättre upplevelse. För kaféer, restauranger och salonger.">
 <meta name="theme-color" content="#fbfaf7">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffb35c'/%3E%3Cstop offset='.45' stop-color='%23ff6a3d'/%3E%3Cstop offset='.8' stop-color='%23ff6fa0'/%3E%3Cstop offset='1' stop-color='%23b49bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M12 1.5c.9 6.2 2.8 8.7 10.5 10.5-7.7 1.8-9.6 4.3-10.5 10.5C11.1 16.3 9.2 13.8 1.5 12 9.2 10.2 11.1 7.7 12 1.5z'/%3E%3C/svg%3E">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="star-glow.webp" as="image" type="image/webp">
 <style>
@@ -33,8 +33,8 @@
   header { position: fixed; inset: 0 0 auto; z-index: 20; transition: background-color .3s, box-shadow .3s; }
   header.scrolled { background: rgba(251, 250, 247, .92); box-shadow: 0 1px 0 var(--line); }
   .nav { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .brand { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 20px; letter-spacing: -0.02em; text-decoration: none; }
-  .brand svg { width: 22px; height: 22px; }
+  .brand { display: flex; align-items: baseline; font-weight: 600; font-size: 22px; letter-spacing: -0.03em; text-decoration: none; }
+  .brand .gmark { height: 1.12em; width: auto; position: relative; top: .42em; margin-right: .02em; } /* the mark is the g: its point sits on the baseline, the lower point hangs below */
   .links { display: flex; gap: 28px; font-size: 15px; } .links a { text-decoration: none; color: var(--muted); } .links a:hover { color: var(--ink); }
   .navr { display: flex; align-items: center; gap: 10px; }
   .lang { height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font: inherit; font-size: 14px; cursor: pointer; }
@@ -265,7 +265,7 @@
 <a class="skip" href="#main" data-t="skip">Hoppa till innehållet</a>
 <header id="top">
   <div class="wrap nav">
-    <a class="brand" href="#main" aria-label="Guestwise" translate="no"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="bstar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb35c"/><stop offset=".45" stop-color="#ff6a3d"/><stop offset=".8" stop-color="#ff6fa0"/><stop offset="1" stop-color="#b49bff"/></linearGradient></defs><path fill="url(#bstar)" d="M12 1.5c.9 6.2 2.8 8.7 10.5 10.5-7.7 1.8-9.6 4.3-10.5 10.5C11.1 16.3 9.2 13.8 1.5 12 9.2 10.2 11.1 7.7 12 1.5z"/></svg>Guestwise</a>
+    <a class="brand" href="#main" aria-label="Guestwise" translate="no"><img class="gmark" src="logo/gw-g.svg" alt="" width="17" height="23">uestwise</a>
     <nav class="links" aria-label="Huvudmeny" data-t-aria="nav"><a href="#how" data-t="n1">Så fungerar det</a><a href="#story" data-t="n2">Funktioner</a><a href="#pricing" data-t="n3">Priser</a><a href="#faq" data-t="n4">Frågor</a></nav>
     <div class="navr"><button class="lang" id="lang" type="button" aria-label="Switch to English">EN</button><a class="btn" href="#book" data-t="cta">Boka visning</a></div>
   </div>
@@ -380,7 +380,7 @@
 <footer>
   <div class="wrap">
     <div class="fbig" aria-hidden="true">Guestwise</div>
-    <div class="frow"><span>© 2026 Guestwise</span><span><a href="mailto:hej@guestwise.eu">hej@guestwise.eu</a></span></div>
+    <div class="frow"><span>© 2026 Guestwise</span><span><a href="integritet.html" data-t="privacy">Integritetspolicy</a> · <a href="mailto:hej@guestwise.eu">hej@guestwise.eu</a></span></div>
   </div>
 </footer>
 
@@ -399,7 +399,7 @@
   const T = {
     en: {
       skip: 'Skip to content', n1: 'How it works', n2: 'Features', n3: 'Pricing', n4: 'FAQ', cta: 'Book a demo', cta2: 'Book a demo',
-      h1: 'More guests, happier guests', lede: 'The AI assistant that helps small businesses win more customers and give them a better experience.', bizl: 'Your business name', biz: 'What is your business called?',
+      privacy: 'Privacy policy', h1: 'More guests, happier guests', lede: 'The AI assistant that helps small businesses win more customers and give them a better experience.', bizl: 'Your business name', biz: 'What is your business called?',
       note: '20 minutes, free. We show you your own reviews.', scroll: 'Scroll', howh: 'How it works', hows: 'Three steps. You only do the last one.',
       rev: 'Good coffee, but I waited 20 minutes for my sandwich on a Saturday.', draft: 'Suggested reply',
       c1h: 'We read every review', c1p: 'Guestwise fetches new reviews from Google as soon as they arrive.',
