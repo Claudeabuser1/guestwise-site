@@ -34,7 +34,7 @@
   header.scrolled { background: rgba(251, 250, 247, .92); box-shadow: 0 1px 0 var(--line); }
   .nav { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .brand { display: flex; align-items: baseline; font-weight: 600; font-size: 22px; letter-spacing: -0.03em; text-decoration: none; }
-  .brand .gmark { height: 1.12em; width: auto; position: relative; top: .42em; margin-right: .02em; } /* the mark is the g: its point sits on the baseline, the lower point hangs below */
+  .brand .gmark { height: 1.12em; width: auto; position: relative; top: .42em; margin-right: .02em; } /* the drawn mark is the g: its angle sits on the baseline, the check hangs below */
   .links { display: flex; gap: 28px; font-size: 15px; } .links a { text-decoration: none; color: var(--muted); } .links a:hover { color: var(--ink); }
   .navr { display: flex; align-items: center; gap: 10px; }
   .lang { height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font: inherit; font-size: 14px; cursor: pointer; }
@@ -67,6 +67,12 @@
   .ask input { flex: 1; min-width: 0; height: 50px; border: 0; background: transparent; font: inherit; font-size: 18px; color: var(--ink); }
   .ask input::placeholder { color: #8a867f; } .ask input:focus { outline: none; } .ask:focus-within { box-shadow: 0 0 0 2px var(--accent), 0 20px 60px -20px rgba(80, 30, 10, .35); }
   .ask .btn { height: 50px; padding: 0 22px; border-radius: 14px; font-size: 16px; }
+  .ask.book { width: min(760px, 100%); display: grid; grid-template-columns: 1fr 1fr 0.8fr auto; padding: 10px; gap: 6px; }
+  .ask.book input { padding: 0 14px; border-radius: 12px; font-size: 16px; background: #f5f2ec; transition: background-color .2s, box-shadow .2s; } .ask.book input:focus { background: #fff; box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .ask.book:focus-within { box-shadow: 0 20px 60px -20px rgba(80, 30, 10, .35); }
+  .ask .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .ferr { grid-column: 1 / -1; margin: 2px 6px 4px; color: #b3261e; font-size: 14px; text-align: left; }
+  .ask .btn[disabled] { opacity: .7; cursor: progress; }
   .note { font-size: 14px; color: #4a4843; }
   .scrollcue { position: relative; margin-top: 40px; font-size: 13px; line-height: 1; color: #4a4843; display: grid; justify-items: center; gap: 10px; }
   .scrollcue span { width: 1.5px; height: 28px; background: currentColor; transform-origin: top; animation: cue 1.8s ease-in-out infinite; }
@@ -210,6 +216,7 @@
   .arw { display: none; }
   @media (max-width: 900px) {
     .links { display: none; }
+    .ask.book { grid-template-columns: 1fr 1fr; } .ask.book .btn { grid-column: 1 / -1; }
     section { padding: 96px 0; }
     .cards, .plans { grid-template-columns: 1fr; }
     .story, .faq { grid-template-columns: 1fr; gap: 32px; }
@@ -247,6 +254,7 @@
     .wrap { width: calc(100% - 32px); }
     .navr .btn { display: none; }
     .ask { flex-direction: column; align-items: stretch; padding: 10px; } .ask input { padding: 0 12px; } .ask .btn { width: 100%; }
+    .ask.book { grid-template-columns: 1fr; }
     .hero .sub { font-size: 17px; }
     .starglow img { width: 222vw; top: 58%; }
     .glow i, .starglow img { animation: none !important; will-change: auto; }
@@ -276,13 +284,19 @@
     <div class="glow starglow" aria-hidden="true"><img src="star-glow.webp" alt="" width="520" height="520" decoding="async" fetchpriority="high"></div>
     <div class="wrap hero-in">
       <h1 class="rv" data-t="h1">Fler gäster, gladare gäster</h1>
-      <p class="sub rv" style="--i:1" data-t="lede">AI-assistenten som hjälper små företag att få fler kunder och ge dem en bättre upplevelse.</p>
-      <form class="ask rv" style="--i:2" data-book>
-        <label class="skip" for="biz1" data-t="bizl">Ditt företags namn</label>
-        <input id="biz1" name="biz" autocomplete="organization" spellcheck="false" maxlength="80" data-t-ph="biz" placeholder="Vad heter ditt företag?">
+      <p class="sub rv" style="--i:1" data-t="lede">AI-assistenten som gör nöjda gäster till nya gäster.</p>
+      <form class="ask book rv" style="--i:2" data-book novalidate>
+        <label class="skip" for="biz1" data-t="bizl">Företagets namn</label>
+        <input id="biz1" name="biz" autocomplete="organization" spellcheck="false" maxlength="80" required data-t-ph="biz" placeholder="Företagets namn">
+        <label class="skip" for="mail1" data-t="maill">E-post</label>
+        <input id="mail1" name="email" type="email" autocomplete="email" spellcheck="false" maxlength="120" required data-t-ph="mail" placeholder="E-post">
+        <label class="skip" for="tel1" data-t="phonel">Telefon (valfritt)</label>
+        <input id="tel1" name="phone" type="tel" autocomplete="tel" maxlength="30" data-t-ph="phone" placeholder="Telefon (valfritt)">
+        <input class="hp" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn hot" type="submit" data-t="cta2">Boka en visning</button>
+        <p class="ferr" role="alert" hidden></p>
       </form>
-      <p class="note rv" style="--i:3" data-t="note">20 minuter, kostnadsfritt. Vi visar era egna recensioner.</p>
+      <p class="note rv" style="--i:3" data-t="note">20 minuter, kostnadsfritt. Vi går igenom era egna recensioner, live.</p>
     </div>
     <div class="scrollcue" aria-hidden="true"><small data-t="scroll">Scrolla</small><span></span></div>
   </section>
@@ -294,15 +308,15 @@
       <div class="swipewrap"><button class="arw prev" type="button" data-t-aria="prev" aria-label="Föregående"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="arw next" type="button" data-t-aria="next" aria-label="Nästa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><div class="cards swipe">
         <article class="card rv">
           <div class="stage"><div class="mini"><div class="who">Karin O. <span class="stars" role="img" aria-label="2 av 5 stjärnor">★★<b>★★★</b></span></div><p data-t="rev">Gott kaffe, men jag fick vänta 20 minuter på mackan en lördag.</p><svg class="lens" viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="13" fill="rgba(255,255,255,.35)" stroke="#141414" stroke-width="3.5"/><path d="M14 14a8 8 0 0 1 8-3" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="M30 30l11 11" stroke="#141414" stroke-width="5" stroke-linecap="round"/></svg></div></div>
-          <div class="txt"><h3 data-t="c1h">Vi läser varje recension</h3><p data-t="c1p">Guestwise hämtar nya recensioner från Google så fort de kommer.</p></div>
+          <div class="txt"><h3 data-t="c1h">Ingen recension missas</h3><p data-t="c1p">Så fort en gäst skriver på Google ser Guestwise det. Även den som kommer klockan elva en fredagkväll.</p></div>
         </article>
         <article class="card rv" style="--i:1">
           <div class="stage"><div class="mini"><div class="who"><span data-t="draft">Förslag till svar</span><span class="wr" data-t="wr">✦ skriver…</span></div><p class="typed" id="typed"></p></div></div>
-          <div class="txt"><h3 data-t="c2h">Svaret skrivs i er ton</h3><p data-t="c2p">På samma språk som recensionen, och om det som gästen faktiskt skrev.</p></div>
+          <div class="txt"><h3 data-t="c2h">Ett svar som låter som ni</h3><p data-t="c2p">Personligt, på gästens språk och om det gästen faktiskt skrev. Aldrig ett kopierat standardsvar.</p></div>
         </article>
         <article class="card rv" style="--i:2">
           <div class="stage"><div class="mini"><div class="approve" id="approve"><span class="bwrap"><span class="spark" aria-hidden="true"><i style="--x:-125px;--y:-34px"></i><i style="--x:-140px;--y:6px"></i><i style="--x:-110px;--y:38px"></i><i style="--x:-80px;--y:-46px"></i><i style="--x:125px;--y:-34px"></i><i style="--x:140px;--y:6px"></i><i style="--x:110px;--y:38px"></i><i style="--x:80px;--y:-46px"></i></span><button class="btn hot" type="button" data-t="ok">Godkänn och publicera</button></span><span class="tick" role="status" data-t="okd">✓ Publicerat på Google</span><svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5l15 9.2-6.6 1.4 3.9 7.3-2.9 1.5-3.9-7.4L4.6 19z" fill="#141414" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></div></div></div>
-          <div class="txt"><h3 data-t="c3h">Du godkänner med ett klick</h3><p data-t="c3p">Inget publiceras utan dig, om du inte själv väljer det.</p></div>
+          <div class="txt"><h3 data-t="c3h">Ett tryck, sen är det ute</h3><p data-t="c3p">Inget publiceras utan ditt ok. Svaret ligger ute innan kaffet hunnit kallna.</p></div>
         </article>
       </div></div>
     </div>
@@ -313,17 +327,17 @@
       <div class="wrap story">
         <div class="story-l">
           <h2><span data-t="sth">Byggt för</span><br><span class="word" id="word">kaféer</span></h2>
-          <p class="sub" data-t="sts">Mer än svar. Guestwise håller koll på allt som får fler att hitta er.</p>
+          <p class="sub" data-t="sts">Recensionerna är det första nya gäster läser. Guestwise ser till att de lockar.</p>
           <div class="stepwin"><ol class="steps" id="steps">
-            <li class="on" data-s="0"><b data-t="s0h">Svar på varje recension</b><span data-t="s0p">Utkast i er ton på svenska eller engelska, klara att godkänna.</span><i class="bar"></i></li>
-            <li data-s="1"><b data-t="s1h">Koll på grannarna</b><span data-t="s1p">Se hur ni ligger till mot kaféerna på samma gata, och hur långt det är kvar.</span><i class="bar"></i></li>
-            <li data-s="2"><b data-t="s2h">Veckorapport</b><span data-t="s2p">Vad gästerna gillar, vad de klagar på och vad du kan göra åt det.</span><i class="bar"></i></li>
-            <li data-s="3"><b data-t="s3h">NFC-kort vid kassan</b><span data-t="s3p">Gästen blippar med mobilen och hamnar direkt på er recensionssida.</span><i class="bar"></i></li>
+            <li class="on" data-s="0"><b data-t="s0h">Svar på varje recension</b><span data-t="s0p">Personliga svar på gästens språk, klara på några sekunder.</span><i class="bar"></i></li>
+            <li data-s="1"><b data-t="s1h">Koll på grannarna</b><span data-t="s1p">Se exakt hur många recensioner som skiljer er från stället på hörnet.</span><i class="bar"></i></li>
+            <li data-s="2"><b data-t="s2h">Veckorapport</b><span data-t="s2p">Vad gästerna älskar, vad som skaver och vad du kan göra åt det redan i veckan.</span><i class="bar"></i></li>
+            <li data-s="3"><b data-t="s3h">NFC-kort vid kassan</b><span data-t="s3p">Gästen blippar mobilen mot kortet och landar direkt på er recensionssida. Inget letande.</span><i class="bar"></i></li>
           </ol></div>
         </div>
         <div class="story-r">
-          <div class="panel on" data-s="0"><div class="dui"><h4 data-t="p0h">Väntar på svar · 3</h4><p data-t="p0a">“Bästa kanelbullen i stan!” ★★★★★</p><p style="margin-top:10px;color:#5c5a55" data-t="p0b">Tack så mycket! Vi bakar dem varje morgon, välkommen tillbaka. /Elin</p></div></div>
-          <div class="panel" data-s="1"><div class="dui"><h4 data-t="p1h">Recensioner på Google (exempel)</h4><div class="lad"><div>Kafé Tallkotten<span>212</span><i style="--w:100%"></i></div><div>Bryggan Kaffebar<span>96</span><i style="--w:45%"></i></div><div>Kanelhörnan<span>57</span><i style="--w:27%"></i></div><div class="me"><span data-t="you">Ert kafé</span><span>38</span><i style="--w:18%"></i></div></div><p style="margin-top:14px;color:#5c5a55" data-t="p1b">19 recensioner kvar till nästa granne.</p></div></div>
+          <div class="panel on" data-s="0"><div class="dui"><h4 data-t="p0h">Väntar på svar · 3</h4><p data-t="p0a">Sara L. ★★★★★ “Bästa kanelbullen i stan!”</p><p style="margin-top:10px;color:#5c5a55" data-t="p0b">Tack Sara! Degen sätts kvart i sex varje morgon, så det här värmer. Prova kardemummabullen nästa gång, den är personalens favorit. /Elin</p></div></div>
+          <div class="panel" data-s="1"><div class="dui"><h4 data-t="p1h">Recensioner på Google (exempel)</h4><div class="lad"><div>Kafé Tallkotten<span>212</span><i style="--w:100%"></i></div><div>Bryggan Kaffebar<span>96</span><i style="--w:45%"></i></div><div>Kanelhörnan<span>57</span><i style="--w:27%"></i></div><div class="me"><span data-t="you">Ert kafé</span><span>38</span><i style="--w:18%"></i></div></div><p style="margin-top:14px;color:#5c5a55" data-t="p1b">20 recensioner till, sen går ni om Kanelhörnan.</p></div></div>
           <div class="panel" data-s="2"><div class="dui"><h4 data-t="p2h">Veckorapport, vecka 45</h4><div class="rep"><div class="k"><span data-t="p2a">Gillar</span><b data-t="p2av">Bullarna, personalen</b></div><div class="k"><span data-t="p2b">Klagar på</span><b data-t="p2bv">Väntetid på lördagar</b></div><div class="k" style="border:0"><span data-t="p2c">Gör så här</span><b data-t="p2cv">En extra person 11–14</b></div></div></div></div>
           <div class="panel" data-s="3"><div><div class="nfc"><div class="ntop"><span class="nst" role="img" aria-label="5 av 5 stjärnor">★★★★★</span><b data-t="nfcb">Vi uppskattar din recension på Google!</b></div><div class="nbot"><div class="wave" aria-hidden="true"><span></span><span></span><svg viewBox="0 0 24 24"><path d="M9 7a7 7 0 0 1 0 10M12.5 4.5a10.5 10.5 0 0 1 0 15M5.5 9.5a3.5 3.5 0 0 1 0 5" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round"/></svg></div><small data-t="tap">Blippa för att betygsätta</small></div></div><div class="count"><b id="taps">0</b><span data-t="taps">blipp den här månaden (exempel)</span></div></div></div>
         </div>
@@ -368,10 +382,16 @@
     <div class="glow" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap hero-in">
       <h2 class="rv" data-t="fh">Låt gästerna prata för er</h2>
-      <form class="ask rv" style="--i:1" data-book>
-        <label class="skip" for="biz2" data-t="bizl">Ditt företags namn</label>
-        <input id="biz2" name="biz" autocomplete="organization" spellcheck="false" maxlength="80" data-t-ph="biz" placeholder="Vad heter ditt företag?">
+      <form class="ask book rv" style="--i:1" data-book novalidate>
+        <label class="skip" for="biz2" data-t="bizl">Företagets namn</label>
+        <input id="biz2" name="biz" autocomplete="organization" spellcheck="false" maxlength="80" required data-t-ph="biz" placeholder="Företagets namn">
+        <label class="skip" for="mail2" data-t="maill">E-post</label>
+        <input id="mail2" name="email" type="email" autocomplete="email" spellcheck="false" maxlength="120" required data-t-ph="mail" placeholder="E-post">
+        <label class="skip" for="tel2" data-t="phonel">Telefon (valfritt)</label>
+        <input id="tel2" name="phone" type="tel" autocomplete="tel" maxlength="30" data-t-ph="phone" placeholder="Telefon (valfritt)">
+        <input class="hp" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn hot" type="submit" data-t="cta2">Boka en visning</button>
+        <p class="ferr" role="alert" hidden></p>
       </form>
     </div>
   </section>
@@ -387,7 +407,6 @@
 <script>
 (() => {
   document.documentElement.classList.add('js');
-  const EMAIL = 'hej@guestwise.eu'; // placeholder until the real address exists
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   // pinning: 'Så fungerar det' pins on every screen tall enough; 'Priser' only on wide screens (three cards side by side)
   const onScrollFns = []; let ticking = false;
@@ -399,19 +418,19 @@
   const T = {
     en: {
       skip: 'Skip to content', n1: 'How it works', n2: 'Features', n3: 'Pricing', n4: 'FAQ', cta: 'Book a demo', cta2: 'Book a demo',
-      privacy: 'Privacy policy', h1: 'More guests, happier guests', lede: 'The AI assistant that helps small businesses win more customers and give them a better experience.', bizl: 'Your business name', biz: 'What is your business called?',
-      note: '20 minutes, free. We show you your own reviews.', scroll: 'Scroll', howh: 'How it works', hows: 'Three steps. You only do the last one.',
+      privacy: 'Privacy policy', h1: 'More guests, happier guests', lede: 'The AI assistant that turns happy guests into new guests.', bizl: 'Business name', biz: 'Business name', maill: 'Email', mail: 'Email', phonel: 'Phone (optional)', phone: 'Phone (optional)', sending: 'Sending…', formErr: 'Something went wrong. Try again, or email us at hej@guestwise.eu.',
+      note: '20 minutes, free. We go through your own reviews, live.', scroll: 'Scroll', howh: 'How it works', hows: 'Three steps. You only do the last one.',
       rev: 'Good coffee, but I waited 20 minutes for my sandwich on a Saturday.', draft: 'Suggested reply',
-      c1h: 'We read every review', c1p: 'Guestwise fetches new reviews from Google as soon as they arrive.',
-      c2h: 'The reply is written in your tone', c2p: 'In the same language as the review, about what the guest actually wrote.',
-      ok: 'Approve and publish', okd: '✓ Published on Google', c3h: 'You approve with one click', c3p: 'Nothing is published without you, unless you choose so.',
-      sth: 'Built for', sts: 'More than replies. Guestwise keeps track of everything that helps more people find you.',
-      s0h: 'A reply to every review', s0p: 'Drafts in your tone, in Swedish or English, ready to approve.',
-      s1h: 'An eye on the neighbours', s1p: 'See how you compare with the cafés on your street, and how far there is to go.',
-      s2h: 'Weekly report', s2p: 'What guests like, what they complain about, and what you can do about it.',
-      s3h: 'NFC card at the till', s3p: 'Guests tap their phone and land straight on your review page.',
-      p0h: 'Waiting for a reply · 3', p0a: '“Best cinnamon bun in town!” ★★★★★', p0b: 'Thank you so much! We bake them every morning, welcome back. /Elin',
-      p1h: 'Reviews on Google (example)', you: 'Your café', p1b: '19 reviews to go to pass the next neighbour.',
+      c1h: 'No review slips through', c1p: 'The moment a guest posts on Google, Guestwise sees it. Even the one that lands at eleven on a Friday night.',
+      c2h: 'A reply that sounds like you', c2p: 'Personal, in the guest’s language and about what they actually wrote. Never a copy-paste reply.',
+      ok: 'Approve and publish', okd: '✓ Published on Google', c3h: 'One tap and it’s live', c3p: 'Nothing goes out without your OK. Your reply is up before your coffee gets cold.',
+      sth: 'Built for', sts: 'Reviews are the first thing new guests read. Guestwise makes sure they pull people in.',
+      s0h: 'A reply to every review', s0p: 'Personal replies in the guest’s language, ready in seconds.',
+      s1h: 'An eye on the neighbours', s1p: 'See exactly how many reviews stand between you and the place on the corner.',
+      s2h: 'Weekly report', s2p: 'What guests love, what bugs them, and what you can do about it this week.',
+      s3h: 'NFC card at the till', s3p: 'Guests tap their phone on the card and land right on your review page. No searching.',
+      p0h: 'Waiting for a reply · 3', p0a: 'Sara L. ★★★★★ “Best cinnamon bun in town!”', p0b: 'Thank you, Sara! The dough goes in at 5:45 every morning, so this made our day. Try the cardamom bun next time, it’s the staff favourite. /Elin',
+      p1h: 'Reviews on Google (example)', you: 'Your café', p1b: '20 more reviews and you pass Kanelhörnan.',
       p2h: 'Weekly report, week 45', p2a: 'They like', p2av: 'The buns, the staff', p2b: 'They complain about', p2bv: 'Waiting on Saturdays', p2c: 'Do this', p2cv: 'One more person 11–14',
       tap: 'Tap to rate your experience', nfcb: 'We would appreciate your Google review!', wr: '✦ writing…', taps: 'taps this month (example)',
       prh: 'Simple pricing', prs: 'No lock-in. Prices apply from launch in spring 2027, excluding VAT.', mo: '/ month', pop: 'Recommended', g: 'Growth', b: 'Basic',
@@ -422,14 +441,14 @@
       q3: 'What is the NFC card?', a3: 'A card at the till. Guests hold their phone to it and land straight on your Google review page, without searching.',
       q4: 'When can we start?', a4: 'We launch in spring 2027. Book a demo now to be among the first.',
       q5: 'Does the demo cost anything?', a5: 'No. It takes 20 minutes and we go through your own reviews.',
-      fh: 'Let your guests speak for you', words: ['cafés', 'restaurants', 'salons', 'bakeries'], subj: 'Book a demo', body: 'Hi!\n\nI would like to book a Guestwise demo', bodyEnd: '.\n\nDoes a day next week work?\n', for: ' for ',
+      fh: 'Let your guests speak for you', words: ['cafés', 'restaurants', 'salons', 'bakeries'],
       nav: 'Main menu', prev: 'Previous', next: 'Next', langBtn: 'SV', langAria: 'Byt till svenska', title: 'Guestwise – more guests, happier guests'
     }
   };
-  const SV = { words: ['kaféer', 'restauranger', 'salonger', 'bagerier'], subj: 'Boka en visning', body: 'Hej!\n\nJag vill boka en visning av Guestwise', bodyEnd: '.\n\nPasser det någon dag nästa vecka?\n', for: ' för ', langBtn: 'EN', langAria: 'Switch to English', title: document.title, nav: 'Huvudmeny', prev: 'Föregående', next: 'Nästa' };
+  const SV = { words: ['kaféer', 'restauranger', 'salonger', 'bagerier'], langBtn: 'EN', langAria: 'Switch to English', title: document.title, nav: 'Huvudmeny', prev: 'Föregående', next: 'Nästa' };
   // keep the Swedish originals from the markup so switching back needs no second dictionary
   const orig = {}; document.querySelectorAll('[data-t]').forEach((el) => { orig[el.dataset.t] = el.textContent; });
-  const origPh = document.querySelector('[data-t-ph]').placeholder;
+  document.querySelectorAll('[data-t-ph]').forEach((el) => { el.dataset.phSv = el.placeholder; });
   let lang = 'sv';
   let saved = null; try { saved = localStorage.getItem('gw-lang'); } catch (e) {}
   if (saved === 'en' || (!saved && !/^sv\b/i.test(navigator.language || 'sv'))) lang = 'en';
@@ -439,7 +458,7 @@
   function apply() {
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = lang === 'en' && T.en[el.dataset.t] ? T.en[el.dataset.t] : orig[el.dataset.t]; });
-    document.querySelectorAll('[data-t-ph]').forEach((el) => { el.placeholder = lang === 'en' ? T.en.biz : origPh; });
+    document.querySelectorAll('[data-t-ph]').forEach((el) => { el.placeholder = lang === 'en' ? T.en[el.dataset.tPh] : el.dataset.phSv; });
     document.querySelectorAll('[data-price]').forEach((el) => { el.textContent = fmt(+el.dataset.price); });
     document.querySelectorAll('[data-t-aria]').forEach((el) => el.setAttribute('aria-label', L()[el.dataset.tAria]));
     const b = document.getElementById('lang'); b.textContent = L().langBtn; b.setAttribute('aria-label', L().langAria);
@@ -448,12 +467,26 @@
   }
   document.getElementById('lang').addEventListener('click', () => { lang = lang === 'en' ? 'sv' : 'en'; try { localStorage.setItem('gw-lang', lang); } catch (e) {} apply(); });
 
-  // book a demo: open an email with the business name filled in
-  document.querySelectorAll('[data-book]').forEach((f) => f.addEventListener('submit', (e) => {
+  // book a demo: the request goes straight to our inbox (via Web3Forms), then the visitor lands on the thank-you page
+  const FORM_KEY = 'd97c245d-9ab5-4be1-9cc9-070935691940';
+  const SV_FORM = { sending: 'Skickar…', formErr: 'Något gick fel. Försök igen, eller mejla oss på hej@guestwise.eu.' };
+  document.querySelectorAll('[data-book]').forEach((f) => f.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = f.biz.value.trim().slice(0, 80), l = L();
-    const subject = l.subj + (name ? l.for + name : ''), body = l.body + (name ? l.for + name : '') + l.bodyEnd;
-    location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    const err = f.querySelector('.ferr'), btn = f.querySelector('button'), msg = (k) => (lang === 'en' ? T.en[k] : SV_FORM[k]);
+    err.hidden = true;
+    const bad = [f.biz, f.email].find((el) => !el.checkValidity() || !el.value.trim());
+    if (bad) { bad.focus(); bad.reportValidity(); return; }
+    if (f.botcheck.value) return;
+    const name = f.biz.value.trim().slice(0, 80), label = btn.textContent;
+    btn.disabled = true; btn.textContent = msg('sending');
+    try {
+      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({
+        access_key: FORM_KEY, subject: 'Ny visningsbokning: ' + name, from_name: 'Guestwise.eu',
+        'Företag': name, 'E-post': f.email.value.trim(), 'Telefon': f.phone.value.trim() || '–', 'Språk på sidan': lang, replyto: f.email.value.trim() }) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === false) throw new Error(j.message || r.status);
+      location.href = 'tack.html?f=' + encodeURIComponent(name);
+    } catch (x) { err.textContent = msg('formErr'); err.hidden = false; btn.disabled = false; btn.textContent = label; }
   }));
 
   // nav background after scrolling
@@ -467,7 +500,7 @@
 
   // card 2: the reply types itself when it scrolls into view
   const typed = document.getElementById('typed');
-  const REPLY = { sv: 'Hej Karin, tack för att du berättar. 20 minuter utan ett ord ska du inte behöva vänta. Hoppas du ger oss en chans till. /Elin', en: 'Hi Karin, thank you for telling us. You should never wait 20 minutes without a word. We hope you give us another chance. /Elin' };
+  const REPLY = { sv: 'Hej Karin! 20 minuter på en macka är för länge, och det fixar vi. Från och med i helgen har vi en extra person i köket. Kom förbi igen, nästa kaffe bjuder vi på. /Elin', en: 'Hi Karin! 20 minutes for a sandwich is too long, and we’re fixing it: from this weekend there’s an extra pair of hands in the kitchen. Come back soon, your next coffee is on us. /Elin' };
   let typeTimer, typedSeen = false;
   function typeReply() {
     clearInterval(typeTimer); const txt = REPLY[lang];
